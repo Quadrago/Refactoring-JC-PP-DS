@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class StoredData {
 
@@ -16,10 +15,16 @@ public abstract class StoredData {
             br = new BufferedReader(new FileReader(file));
             String contentLine;
             contentLine = br.readLine();
+            
+            //skip header file for student_data
+            if(contentLine.contains("Student Number")) {
+                contentLine = br.readLine();
+            } 
             while(contentLine != null) {
-
+       
                 //logic for each data set
                 storeLine(contentLine);  
+                contentLine = br.readLine();
             }
             
         } catch (IOException ioe) {

@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class StoredQuestions extends StoredData {
 
@@ -12,15 +11,15 @@ public class StoredQuestions extends StoredData {
     }
     @Override
     public void storeLine(String line) {
-        if(line.contains("Q"+(numQuestions+1))) {
-
+        if(line.toUpperCase().contains("Q"+(numQuestions+1))) {
+            data.add(new ArrayList<String>());
             numQuestions++;
             return;
         }
         else if(line.equals("")) {
             return;
         }
-        
+        data.get(numQuestions-1).add(line.toLowerCase().replace(" ", ""));
     }
     
 }

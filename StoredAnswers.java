@@ -5,7 +5,6 @@ import java.util.List;
 public class StoredAnswers extends StoredData {
 
     private int numQuestions = 0;
-
     public StoredAnswers(String file) {
         this.file = file;
         storeData();   
@@ -13,11 +12,14 @@ public class StoredAnswers extends StoredData {
 
     @Override
     public void storeLine(String line) {
-        if(line.toUpperCase().contains("A"+(numQuestions+1)) || line.equals("")) {
+        if(line.toUpperCase().contains("A"+(numQuestions+1))) {
             numQuestions++;
             return;
         }
-        List<String> tempList = Arrays.asList(line.split(",",-1));
+        else if(line.equals("")) {
+            return;
+        }
+        List<String> tempList = Arrays.asList(line.split(";",-1));
         data.add(new ArrayList<String>(tempList));
     }
 }
