@@ -6,11 +6,12 @@ public class StoredQuestions extends StoredData {
     private int numQuestions = 0;
 
     public StoredQuestions(String file) {
+
         this.file = file;
         storeData();
     }
     @Override
-    public void storeLine(String line) {
+    protected void storeLine(String line) {
         if(line.toUpperCase().contains("Q"+(numQuestions+1))) {
             data.add(new ArrayList<String>());
             numQuestions++;

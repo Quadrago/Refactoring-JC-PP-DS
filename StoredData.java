@@ -40,7 +40,7 @@ public abstract class StoredData {
         
     }
     
-    public abstract void storeLine(String line);
+    protected abstract void storeLine(String line);
     
     public ArrayList<ArrayList<String>> getData() {
         return data;

@@ -10,7 +10,7 @@ public class StoredResponses extends StoredData {
     }
 
     @Override
-    public void storeLine(String line) {
+    protected void storeLine(String line) {
         if(line.equals("")) {
             return;
         }

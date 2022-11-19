@@ -11,7 +11,7 @@ public class StoredAnswers extends StoredData {
     }
 
     @Override
-    public void storeLine(String line) {
+    protected void storeLine(String line) {
         if(line.toUpperCase().contains("A"+(numQuestions+1))) {
             numQuestions++;
             return;
