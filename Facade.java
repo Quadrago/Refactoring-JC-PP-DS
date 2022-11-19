@@ -54,6 +54,31 @@ public class Facade {
         responseData = new StoredResponses(file);
     }
     public void compareAnswers() {
-        compare.solToReponse(responseData.getData(), studentData.getData(), answerData.getData());
+
+        if(responseData.getData() == null) {
+            System.out.println("No response data");
+            return;
+        }
+
+        String ansFile;
+        String studentFile;
+
+        if(responseData.getFile().equals("data/response_data/student_data_q1_response.csv")) {
+            ansFile = answerDir + "sample_a_1.txt";
+            studentFile = studentDir + "student_data_1.csv";
+            
+        }
+        else {
+            int indexOfNum = responseDir.length()+13;
+            System.out.println(responseData.getFile().indexOf('_',indexOfNum));
+            int answerFileNum =  Integer.parseInt(responseData.getFile().substring(indexOfNum, responseData.getFile().indexOf('_',indexOfNum+1)));; //32 index indicates the file number
+            ansFile = answerDir + "sample_a_" + answerFileNum + ".txt"; //creates file corresponding to response file
+            studentFile = studentDir + "student_data_" + answerFileNum + ".csv";
+        }
+
+        StoredData tempAnswerData = new StoredAnswers(ansFile);
+        StoredData tempStudentData = new StoredStudentsInfo(studentFile);
+
+        compare.solToReponse(responseData.getData(), tempStudentData.getData(), tempAnswerData.getData());
     }
 }
