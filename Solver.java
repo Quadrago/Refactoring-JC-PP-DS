@@ -1,4 +1,4 @@
-public class solve {
+public class Solver {
     private String[][] answerData;
     //question data
 
