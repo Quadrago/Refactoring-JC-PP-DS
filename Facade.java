@@ -5,17 +5,20 @@ public class Facade {
     private Solver solver;
     //private CSVAnswer;
     //private CSVScore;
+    private CompareData compare;
+
     private StoredData answerData;
     private StoredData questionData;
     private StoredData responseData;
     private StoredData studentData;
+
     private String answerDir = "data/answer_data/";
     private String questionDir = "data/question_data/";
     private String studentDir = "data/student_data/";
     private String responseDir = "data/response_data/";
     
     public Facade(){
-        
+        compare = new CompareData();
     }
     private String validateFile(String dir) {
         Scanner scan = new Scanner(System.in);
@@ -49,5 +52,8 @@ public class Facade {
     public void setResponseData() {
         String file = validateFile(responseDir);
         responseData = new StoredResponses(file);
+    }
+    public void compareAnswers() {
+        compare.solToReponse(responseData.getData(), studentData.getData(), answerData.getData());
     }
 }
