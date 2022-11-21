@@ -17,7 +17,7 @@ public abstract class StoredData {
             contentLine = br.readLine();
             
             //skip header file for student_data
-            if(contentLine.contains("Student Number")) {
+            if(file.contains("student_data")) {
                 contentLine = br.readLine();
             } 
             while(contentLine != null) {
