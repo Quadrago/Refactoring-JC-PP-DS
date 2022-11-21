@@ -18,7 +18,9 @@ public class Facade {
     private String responseDir = "data/response_data/";
     
     public Facade(){
+        
         compare = new CompareData();
+
     }
     private String validateFile(String dir) {
         Scanner scan = new Scanner(System.in);
@@ -39,7 +41,7 @@ public class Facade {
     //add the CSV stuff later
     public void setAnswerData() {
         String file = validateFile(answerDir);
-        answerData = new StoredAnswers(file);
+        answerData  = new StoredAnswers(file);
     }
     public void setQuestionData() {
         String file = validateFile(questionDir);
@@ -53,32 +55,39 @@ public class Facade {
         String file = validateFile(responseDir);
         responseData = new StoredResponses(file);
     }
-    public void compareAnswers() {
 
+
+    /**
+     * stores scores into CompareData class
+     * compares the respones to answers
+     */
+    public void compareToAnswers() {
+
+        //checks if there is response data to compare to
         if(responseData.getData() == null) {
             System.out.println("No response data");
             return;
         }
 
+        //temp answer and student files for respective response file
         String ansFile;
         String studentFile;
 
         if(responseData.getFile().equals("data/response_data/student_data_q1_response.csv")) {
             ansFile = answerDir + "sample_a_1.txt";
             studentFile = studentDir + "student_data_1.csv";
-            
         }
         else {
-            int indexOfNum = responseDir.length()+13;
-            System.out.println(responseData.getFile().indexOf('_',indexOfNum));
+            int indexOfNum = responseDir.length()+13; //location of the file number in string
             int answerFileNum =  Integer.parseInt(responseData.getFile().substring(indexOfNum, responseData.getFile().indexOf('_',indexOfNum+1)));; //32 index indicates the file number
+            
             ansFile = answerDir + "sample_a_" + answerFileNum + ".txt"; //creates file corresponding to response file
             studentFile = studentDir + "student_data_" + answerFileNum + ".csv";
         }
-
-        StoredData tempAnswerData = new StoredAnswers(ansFile);
+        //store tempoary answer & student data
         StoredData tempStudentData = new StoredStudentsInfo(studentFile);
-
+        StoredData tempAnswerData = new StoredAnswers(ansFile);
+        
         compare.solToReponse(responseData.getData(), tempStudentData.getData(), tempAnswerData.getData());
     }
 }

@@ -8,6 +8,15 @@ public abstract class StoredData {
     protected ArrayList<ArrayList<String>> data;
     protected String file;
 
+    /**
+     * store file and store data once called
+     * @param file supered file
+     */
+    public StoredData(String file) {
+         this.file = file;
+         storeData();
+    }
+
     protected void storeData() {
         data = new ArrayList<ArrayList<String>>();
         BufferedReader br = null;
@@ -40,12 +49,19 @@ public abstract class StoredData {
         
     }
     
+    /**
+     * Each subclass has their own implementation to store the line 
+     * in their own way
+     * @param line current content line of file
+     */
     protected abstract void storeLine(String line);
     
+    //get 2d Array List of respective subclass's data
     public ArrayList<ArrayList<String>> getData() {
         return data;
     }
     
+    //get String file 
     public String getFile() {
         return file;
     }
