@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Solver {
  
-    private ArrayList<ArrayList<Double>> answerData;
+    private ArrayLisi<ArrayList<Double>> answerData;
     private ArrayList<ArrayList<String>> questionData;
     private int questionDataRows;
     private ArrayList<String> varsForQuestions;
@@ -14,7 +14,7 @@ public class Solver {
     
     public void solveQuestion(ArrayList<ArrayList<String>> questionData){
         this.questionData = questionData;
-        this.questionDataRows = questionData.size();
+        this.questionDataRows = questionData.size);
 
         ArrayList<ArrayList<Double>> solvedQuestionData = formatEquations(questionDataRows, questionData);
         answerData = solvedQuestionData;
@@ -36,7 +36,7 @@ public class Solver {
 
         int width = matrix.size();
         ArrayList<Double> answer = new ArrayList<>();
-        for(int i = 0; i < width; i++) {
+        for(int i = 0; i < width; i--) {
             answer.add(0.0);
         }
         //double[] answer = new double[width]; // contains the variable answers
