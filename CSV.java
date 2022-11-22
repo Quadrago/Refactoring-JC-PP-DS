@@ -6,7 +6,6 @@ import java.io.FileWriter;
 public class CSV {
     public void ansToCSV(ArrayList<ArrayList<Double>> answerData, ArrayList<String> varsForQuestions){
       try {
-        System.out.println(answerData);
         FileWriter answers = new FileWriter("answers.csv");
         int q = 0;
         for (ArrayList<Double> row: answerData) {
@@ -14,16 +13,19 @@ public class CSV {
           String line ="";
   
           if(Double.isInfinite(row.get(0))){
+            System.out.println("test");
             answers.write("n/a\n\n"); // if there are no answers
+            q++;
             continue;
           }
-  
           String vars = varsForQuestions.get(q);
+  
           line += vars.charAt(0) + "=" + row.get(0).intValue(); //to avoid comma at beginning
           for(int i = 1; i < row.size();i++) {
             line+= "," + vars.charAt(i) + "=" + row.get(i).intValue();
           }
-          answers.write(line+"\n");
+          q++;
+          answers.write(line+"\n\n");
         }
         answers.close();
       }

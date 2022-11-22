@@ -4,7 +4,8 @@ public class Main {
     public static void main(String[] args) {
 
         Facade work = new Facade();
-        work.setAnswerData();
+        System.out.println("Enter file name containing student data (including file extension): ");
+        work.setStudentData();
 
         Scanner scan = new Scanner(System.in);
         System.out.println("To skip to answers type 'yes' and 'no' to solve questions");
@@ -14,12 +15,18 @@ public class Main {
         //question file entry
             System.out.println("Enter file name containing question data (including file extension): ");
             work.setQuestionData();
+            work.solveQuestions();
         }
         else if (accessAnswers.equals("yes")) {
-            work.compareToAnswers();
+            System.out.println("Enter file name containing answer data (including file extension): ");
+            work.setAnswerData();
+            System.out.println("test");
         }
-        scan.close();
+        System.out.println("Enter file to solve containing response data (including file extension): ");
+        work.setResponseData();
+        work.compareToAnswers();
         work.outScores();
         work.outAnswers();
+       
     }
 }

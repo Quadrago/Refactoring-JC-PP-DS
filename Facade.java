@@ -45,14 +45,13 @@ public class Facade {
         }
     }
     public void outAnswers() {
-
+        if(solver.getAnswerData()!=null) {
             csv.ansToCSV(solver.getAnswerData(),solver.getVariablesForEquations());
-        
+        }
     }
 
 
     public void setAnswerData() {
-        System.out.println("Enter file containg student data:");
         String file = validateFile(answerDir);
         answerData  = new StoredAnswers(file);
     }
