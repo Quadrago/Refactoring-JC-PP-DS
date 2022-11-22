@@ -175,38 +175,7 @@ public class Solver {
         return solvedQuestions;
     }
 
-    private ArrayList<String> getVarsForQuestons(int questionDataRows, ArrayList<ArrayList<String>> answerData/*, ArrayList<ArrayList<Double>> solvedQuestions, ArrayList<ArrayList<String>> cleanedQuestions, ArrayList<String> varsForQuestons*/){
-        ArrayList<ArrayList<Double>> solvedQuestions = new ArrayList<>();
-        ArrayList<String> varsForQuestons = new ArrayList<>();
-        // cleaned equation ========== answer data (right???????)
-
-        for (int n = 0; n < questionDataRows; n++) {
-
-            // 2d array for question: each row contains an equation
-
-            ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
-            String vars = "";
-
-            for (String equation : answerData.get(n)) {
-                for (char val : equation.toCharArray()) {
-
-                    // adds letter if it doesn't exist in current varaibles string
-                    if (Character.isLetter(val) && vars.indexOf(val) == -1) {
-                        vars += val;
-                    }
-                }
-            }
-
-            varsForQuestons.add(vars); // variables used question
-
-            convertEquationToMatrix(matrix, answerData.get(n), vars);
-
-            solvedQuestions.set(n, solveMatrix(matrix)); // stores answers for each variable in row
-
-        }
-        return varsForQuestons;
-    }
-
+    
   
 }
 
