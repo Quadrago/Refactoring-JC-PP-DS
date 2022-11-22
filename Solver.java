@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Solver {
  
-    private ArrayLisi<ArrayList<Double>> answerData;
+    private ArrayList<ArrayList<Double>> answerData;
     private ArrayList<ArrayList<String>> questionData;
     private int questionDataRows;
     private ArrayList<String> varsForQuestions;
