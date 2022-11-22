@@ -1,18 +1,17 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
-
 public class Solver {
-// are the variabiebl capitalized 
-    private ArrayList<String> varsForQuestions;
-    private ArrayList<ArrayList<String>> questionData;
+ 
     private ArrayList<ArrayList<Double>> answerData;
+    private ArrayList<ArrayList<String>> questionData;
     private int questionDataRows;
+    private ArrayList<String> varsForQuestions;
 
     public ArrayList<ArrayList<Double>> getAnswerData() {
         return answerData;
     }
+    
     public void solveQuestion(ArrayList<ArrayList<String>> questionData){
         this.questionData = questionData;
         this.questionDataRows = questionData.size();
@@ -80,10 +79,6 @@ public class Solver {
         ArrayList<String> equalSeperated = new ArrayList<>(Arrays.asList(equation.split("=")));
         String leftSide = equalSeperated.get(0);
         String rightSide = equalSeperated.get(1);
-
-
-       // ArrayList<String> uncles = new ArrayList<>(Arrays.asList("hey There".split("")));
-
 
         // for the left side of the equation
         for (String plusSeperated : leftSide.split("\\+")) {
