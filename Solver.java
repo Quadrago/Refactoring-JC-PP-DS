@@ -5,7 +5,7 @@ public class Solver {
  
     private ArrayList<ArrayList<Double>> answerData;
     private ArrayList<ArrayList<String>> questionData;
-    private int questionDataRows;
+    private int numOfQuestions;
     private ArrayList<String> varsForQuestions;
 
     public ArrayList<ArrayList<Double>> getAnswerData() {
@@ -14,9 +14,9 @@ public class Solver {
     
     public void solveQuestion(ArrayList<ArrayList<String>> questionData){
         this.questionData = questionData;
-        this.questionDataRows = questionData.size();
+        this.numOfQuestions = questionData.size();
 
-        ArrayList<ArrayList<Double>> solvedQuestionData = formatEquations(questionDataRows, questionData);
+        ArrayList<ArrayList<Double>> solvedQuestionData = formatEquations(numOfQuestions, questionData);
         answerData = solvedQuestionData;
     }
 
@@ -138,12 +138,12 @@ public class Solver {
         return equationArr;
     }
 
-    private ArrayList<ArrayList<Double>> formatEquations(int questionDataRows, ArrayList<ArrayList<String>> answerData/*, ArrayList<ArrayList<Double>> solvedQuestions, ArrayList<ArrayList<String>> cleanedQuestions, ArrayList<String> varsForQuestons*/){
+    private ArrayList<ArrayList<Double>> formatEquations(int numOfQuestions, ArrayList<ArrayList<String>> answerData/*, ArrayList<ArrayList<Double>> solvedQuestions, ArrayList<ArrayList<String>> cleanedQuestions, ArrayList<String> varsForQuestons*/){
         ArrayList<ArrayList<Double>> solvedQuestions = new ArrayList<>();
         ArrayList<String> varsForQuestions = new ArrayList<>();
         // cleaned equation ========== answer data (right???????)
 
-        for (int n = 0; n < questionDataRows; n++) {
+        for (int n = 0; n < numOfQuestions; n++) {
 
             // 2d array for question: each row contains an equation
 
