@@ -1,10 +1,11 @@
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Solver {
 
-    private ArrayList<String> varsForQuestons;
+
+public class Solver {
+// are the variabiebl capitalized 
+    private ArrayList<String> varsForQuestions;
     private ArrayList<ArrayList<String>> questionData;
     private ArrayList<ArrayList<Double>> answerData;
     private int questionDataRows;
@@ -21,7 +22,7 @@ public class Solver {
     }
 
     public ArrayList<String> getVariablesForEquations(){
-        return varsForQuestons;
+        return varsForQuestions;
     }
 
     private void convertEquationToMatrix(ArrayList<ArrayList<Double>> matrix, ArrayList<String> equations, String vars) {
@@ -144,7 +145,7 @@ public class Solver {
 
     private ArrayList<ArrayList<Double>> formatEquations(int questionDataRows, ArrayList<ArrayList<String>> answerData/*, ArrayList<ArrayList<Double>> solvedQuestions, ArrayList<ArrayList<String>> cleanedQuestions, ArrayList<String> varsForQuestons*/){
         ArrayList<ArrayList<Double>> solvedQuestions = new ArrayList<>();
-        ArrayList<String> varsForQuestons = new ArrayList<>();
+        ArrayList<String> varsForQuestions = new ArrayList<>();
         // cleaned equation ========== answer data (right???????)
 
         for (int n = 0; n < questionDataRows; n++) {
@@ -164,14 +165,14 @@ public class Solver {
                 }
             }
 
-            varsForQuestons.add(vars); // variables used question
+            varsForQuestions.add(vars); // variables used question
 
             convertEquationToMatrix(matrix, answerData.get(n), vars);
 
             solvedQuestions.add(solveMatrix(matrix)); // stores answers for each variable in row
 
         }
-        this.varsForQuestons = varsForQuestons;
+        this.varsForQuestions = varsForQuestions;
         return solvedQuestions;
     }
 
