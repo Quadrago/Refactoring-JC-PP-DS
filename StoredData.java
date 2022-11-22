@@ -17,23 +17,28 @@ public abstract class StoredData {
          storeData();
     }
 
+    /**
+     * Reads through file line by line by line, cleaning and storing
+     * data into data arrayList.
+     * Uses overriden readLine method to clean/store lines
+     */
     protected void storeData() {
-        data = new ArrayList<ArrayList<String>>();
+
+        data = new ArrayList<ArrayList<String>>(); 
         BufferedReader br = null;
         try {
+
             br = new BufferedReader(new FileReader(file));
             String contentLine;
             contentLine = br.readLine();
             
             //skip header file for student_data
-            if(file.contains("student_data")) {
-                contentLine = br.readLine();
-            } 
+            if(file.contains("student_data")) contentLine = br.readLine();
+
             while(contentLine != null) {
-       
                 //logic for each data set
                 storeLine(contentLine);  
-                contentLine = br.readLine();
+                contentLine = br.readLine(); //next line
             }
             
         } catch (IOException ioe) {
