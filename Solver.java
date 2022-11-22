@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Solver {
 
+    private ArrayList<String> varsForQuestons;
     private ArrayList<ArrayList<String>> questionData;
     private ArrayList<ArrayList<Double>> answerData;
     private int questionDataRows;
@@ -20,7 +21,7 @@ public class Solver {
     }
 
     public ArrayList<String> getVariablesForEquations(){
-        return getVarsForQuestons(questionDataRows, questionData);
+        return varsForQuestons;
     }
 
     private void convertEquationToMatrix(ArrayList<ArrayList<Double>> matrix, ArrayList<String> equations, String vars) {
@@ -170,6 +171,7 @@ public class Solver {
             solvedQuestions.add(solveMatrix(matrix)); // stores answers for each variable in row
 
         }
+        this.varsForQuestons = varsForQuestons;
         return solvedQuestions;
     }
 
@@ -195,7 +197,7 @@ public class Solver {
                 }
             }
 
-            varsForQuestons.set(n, vars); // variables used question
+            varsForQuestons.add(vars); // variables used question
 
             convertEquationToMatrix(matrix, answerData.get(n), vars);
 

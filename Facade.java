@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class Facade {
     private Solver solver;
-    //private CSVAnswer;
-    //private CSVScore;
     private CompareData compare;
+    
+    private CSV csv;
 
     private StoredData answerData;
     private StoredData questionData;
@@ -20,6 +20,7 @@ public class Facade {
     public Facade(){
         
         compare = new CompareData();
+        csv = new CSV();
 
     }
     private String validateFile(String dir) {
@@ -38,8 +39,20 @@ public class Facade {
     return returnFile;
     }
     
-    //add the CSV stuff later
+    public void outScores() {
+        if(compare.getScores() != null) {
+            csv.scoreToCSV(compare.getScores());
+        }
+    }
+    public void outAnswers() {
+
+            csv.ansToCSV(solver.getAnswerData(),solver.getVariablesForEquations());
+        
+    }
+
+
     public void setAnswerData() {
+        System.out.println("Enter file containg student data:");
         String file = validateFile(answerDir);
         answerData  = new StoredAnswers(file);
     }
