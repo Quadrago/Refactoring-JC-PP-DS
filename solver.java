@@ -1,30 +1,32 @@
-// cleaned equation ========== answer data (right???????)
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class solver {
+public class Solver {
 
-    private ArrayList<ArrayList<String>> answerData;
+    private ArrayList<ArrayList<String>> questionData;
+    private ArrayList<ArrayList<Double>> answerData;
     private int questionDataRows;
 
-    public ArrayList<ArrayList<Double>> solveQuestion(ArrayList<ArrayList<String>> answerData, int questionDataRows){
-        this.answerData = answerData;
-        this.questionDataRows = questionDataRows;
+    public ArrayList<ArrayList<Double>> getAnswerData() {
+        return answerData;
+    }
+    public void solveQuestion(ArrayList<ArrayList<String>> questionData){
+        this.questionData = questionData;
+        this.questionDataRows = questionData.size();
 
-        ArrayList<ArrayList<Double>> solvedQuestionData = formatEquations(questionDataRows, answerData);
-        return solvedQuestionData;
-
+        ArrayList<ArrayList<Double>> solvedQuestionData = formatEquations(questionDataRows, questionData);
+        answerData = solvedQuestionData;
     }
 
     public ArrayList<String> getVariablesForEquations(){
-        return getVarsForQuestons(questionDataRows, answerData);
+        return getVarsForQuestons(questionDataRows, questionData);
     }
 
     private void convertEquationToMatrix(ArrayList<ArrayList<Double>> matrix, ArrayList<String> equations, String vars) {
 
         for (int i = 0; i < equations.size(); i++) {
-            matrix.set(i, equationToArray(equations.get(i), vars));
+            matrix.add(equationToArray(equations.get(i), vars));
             //matrix[i] = equationToArray(equations[i], vars);
         }
     }
@@ -33,6 +35,9 @@ public class solver {
 
         int width = matrix.size();
         ArrayList<Double> answer = new ArrayList<>();
+        for(int i = 0; i < width; i++) {
+            answer.add(0.0);
+        }
         //double[] answer = new double[width]; // contains the variable answers
 
         // Guassian Elimination: algorithm for solving linear equations
@@ -43,12 +48,12 @@ public class solver {
                 //double ratio = matrix[j][i] / matrix[i][i];
                 double ratio = matrix.get(j).get(i) / matrix.get(i).get(i);
                 for (int x = i; x < width + 1; x++) {
+                    matrix.get(j).set(x,matrix.get(j).get(x) - ratio * matrix.get(i).get(x));
                     //matrix[j][x] = matrix[j][x] - ratio * matrix[i][x];
                 }
             }
         }
         // backward substitution
-        
         answer.set(width - 1, matrix.get(width - 1).get(width) / matrix.get(width - 1).get(width - 1)); 
         for (int i = width - 2; i > -1; i--) {
 
@@ -66,6 +71,9 @@ public class solver {
     private ArrayList<Double> equationToArray(String equation, String vars) {
 
         ArrayList<Double> equationArr = new ArrayList<>();
+        for(int i = 0; i < vars.length()+1; i++) {
+            equationArr.add(0.0);
+        }
 
         ArrayList<String> equalSeperated = new ArrayList<>(Arrays.asList(equation.split("=")));
         String leftSide = equalSeperated.get(0);
@@ -155,11 +163,11 @@ public class solver {
                 }
             }
 
-            varsForQuestons.set(n, vars); // variables used question
+            varsForQuestons.add(vars); // variables used question
 
             convertEquationToMatrix(matrix, answerData.get(n), vars);
 
-            solvedQuestions.set(n, solveMatrix(matrix)); // stores answers for each variable in row
+            solvedQuestions.add(solveMatrix(matrix)); // stores answers for each variable in row
 
         }
         return solvedQuestions;
