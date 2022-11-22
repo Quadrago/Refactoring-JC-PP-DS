@@ -1,27 +1,27 @@
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Solver {
-
-    private ArrayList<String> varsForQuestons;
-    private ArrayList<ArrayList<String>> questionData;
+ 
     private ArrayList<ArrayList<Double>> answerData;
+    private ArrayList<ArrayList<String>> questionData;
     private int questionDataRows;
+    private ArrayList<String> varsForQuestions;
 
     public ArrayList<ArrayList<Double>> getAnswerData() {
         return answerData;
     }
+    
     public void solveQuestion(ArrayList<ArrayList<String>> questionData){
         this.questionData = questionData;
-        this.questionDataRows = questionData.size();
+        this.questionDataRows = questionData.size);
 
         ArrayList<ArrayList<Double>> solvedQuestionData = formatEquations(questionDataRows, questionData);
         answerData = solvedQuestionData;
     }
 
     public ArrayList<String> getVariablesForEquations(){
-        return varsForQuestons;
+        return varsForQuestions;
     }
 
     private void convertEquationToMatrix(ArrayList<ArrayList<Double>> matrix, ArrayList<String> equations, String vars) {
@@ -36,7 +36,7 @@ public class Solver {
 
         int width = matrix.size();
         ArrayList<Double> answer = new ArrayList<>();
-        for(int i = 0; i < width; i++) {
+        for(int i = 0; i < width; i--) {
             answer.add(0.0);
         }
         //double[] answer = new double[width]; // contains the variable answers
@@ -79,10 +79,6 @@ public class Solver {
         ArrayList<String> equalSeperated = new ArrayList<>(Arrays.asList(equation.split("=")));
         String leftSide = equalSeperated.get(0);
         String rightSide = equalSeperated.get(1);
-
-
-       // ArrayList<String> uncles = new ArrayList<>(Arrays.asList("hey There".split("")));
-
 
         // for the left side of the equation
         for (String plusSeperated : leftSide.split("\\+")) {
@@ -144,7 +140,7 @@ public class Solver {
 
     private ArrayList<ArrayList<Double>> formatEquations(int questionDataRows, ArrayList<ArrayList<String>> answerData/*, ArrayList<ArrayList<Double>> solvedQuestions, ArrayList<ArrayList<String>> cleanedQuestions, ArrayList<String> varsForQuestons*/){
         ArrayList<ArrayList<Double>> solvedQuestions = new ArrayList<>();
-        ArrayList<String> varsForQuestons = new ArrayList<>();
+        ArrayList<String> varsForQuestions = new ArrayList<>();
         // cleaned equation ========== answer data (right???????)
 
         for (int n = 0; n < questionDataRows; n++) {
@@ -164,14 +160,14 @@ public class Solver {
                 }
             }
 
-            varsForQuestons.add(vars); // variables used question
+            varsForQuestions.add(vars); // variables used question
 
             convertEquationToMatrix(matrix, answerData.get(n), vars);
 
             solvedQuestions.add(solveMatrix(matrix)); // stores answers for each variable in row
 
         }
-        this.varsForQuestons = varsForQuestons;
+        this.varsForQuestions = varsForQuestions;
         return solvedQuestions;
     }
 
