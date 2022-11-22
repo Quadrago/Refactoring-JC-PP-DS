@@ -55,6 +55,10 @@ public class Facade {
         String file = validateFile(responseDir);
         responseData = new StoredResponses(file);
     }
+    public void solveQuestions() {
+        solver = new Solver();
+        solver.solveQuestion(questionData.getData());
+    }
 
 
     /**
@@ -73,7 +77,7 @@ public class Facade {
         String ansFile;
         String studentFile;
 
-        if(responseData.getFile().equals("data/response_data/student_data_q1_response.csv")) {
+        if(responseData.getFile().equals(responseDir+"student_data_q1_response.csv")) {
             ansFile = answerDir + "sample_a_1.txt";
             studentFile = studentDir + "student_data_1.csv";
         }
