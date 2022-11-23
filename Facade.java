@@ -20,6 +20,7 @@ public class Facade {
     public Facade(){
         
         compare = new CompareData();
+        solver = new Solver();
         csv = new CSV();
 
     }
@@ -30,13 +31,13 @@ public class Facade {
 
         //while input is not empty and the file itself isn't empty
         while(file.equals("") || !new File(dir+file).exists()) { 
-        System.out.print("No File Found. Enter File Name Again.\n");
-        file = scan.nextLine();
-    }
+            System.out.print("No File Found. Enter File Name Again.\n");
+            file = scan.nextLine();
+        }
 
-    String returnFile = dir + file;
-    System.out.println(returnFile +": validated");
-    return returnFile;
+        String returnFile = dir + file;
+        System.out.println(returnFile +": validated");
+        return returnFile;
     }
     
     public void outScores() {
@@ -45,7 +46,7 @@ public class Facade {
         }
     }
     public void outAnswers() {
-        if(solver.getAnswerData()!=null) {
+        if(solver.getAnswerData() != null) {
             csv.ansToCSV(solver.getAnswerData(),solver.getVariablesForEquations());
         }
     }
@@ -68,7 +69,6 @@ public class Facade {
         responseData = new StoredResponses(file);
     }
     public void solveQuestions() {
-        solver = new Solver();
         solver.solveQuestion(questionData.getData());
     }
 

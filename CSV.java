@@ -13,7 +13,7 @@ public class CSV {
           String line ="";
   
           if(Double.isInfinite(row.get(0))){
-            System.out.println("test");
+  
             answers.write("n/a\n\n"); // if there are no answers
             q++;
             continue;
