@@ -2,8 +2,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
-
+/**
+ * This is the CSV creator
+ * A try catch method is used
+ */
 public class CSV {
+    /**
+     * This converts the answers array list int a csv using loops to write into the array
+     * @param answerData
+     * @param varsForQuestions
+     */
     public void ansToCSV(ArrayList<ArrayList<Double>> answerData, ArrayList<String> varsForQuestions){
       try {
         FileWriter answers = new FileWriter("answers.csv");
@@ -35,6 +43,10 @@ public class CSV {
           e.printStackTrace();
         }
     }
+  /**
+     * This converts the score array list int a csv using loops to write into the array
+     * @param scoreArr
+     */
   public void scoreToCSV(ArrayList<ArrayList<String>> scoreArr){
     try {
       FileWriter marking = new FileWriter("grading.csv");
